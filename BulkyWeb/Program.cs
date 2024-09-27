@@ -1,10 +1,22 @@
+using Bulky.DataAccess.Repository;
+using Bulky.DataAccess.Repository.IRepository;
+using BulkyWeb.Data;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-var app = builder.Build();
+//Add connection for EntityFrameworkcore
+builder.Services.AddDbContext<ApplicationDbContext>(Options => 
+Options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+var app = builder.Build();
+ 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
@@ -22,6 +34,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{area=Customer}/{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
