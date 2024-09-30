@@ -12,7 +12,7 @@
         <div class="">
             <div class="row ">
                 <div class="col-12 text-end">
-                    <a asp-controller="Product" asp-action="Create" class="btn btn-primary">
+                    <a asp-controller="Product" asp-action="Upsert" class="btn btn-primary">
                         <i class="bi bi-plus-circle-dotted"></i> Create New Product
                     </a>
                 </div>
@@ -30,7 +30,7 @@
             }
             else
             {
-                <table class="table table-bordered table-striped">
+                <table id="tblData" class="table table-bordered table-striped" style="width:100%">
                     <thead class="">
                         <tr>
                             <th class="font-weight-bold">Title</th>
@@ -38,10 +38,11 @@
                             <th class="font-weight-bold">Price</th>
                             <th class="font-weight-bold">Author</th>
                             <th class="font-weight-bold">Category</th>
+                            <th> </th>
 
                         </tr>
                     </thead>
-                    <tbody>
+@*                     <tbody>
                         @foreach (var obj in Model.OrderBy(u => u.Title))
                         {
                             <tr>
@@ -49,10 +50,10 @@
                                 <td>@obj.ISBN</td>
                                 <td>@obj.ListPrice</td>
                                 <td>@obj.Author</td>
-                                <td></td>
+                                <td>@obj.Category.Name</td>
 
                                 <td class="text-center">
-                                    <a asp-controller="Product" asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-sm btn-warning">
+                                    <a asp-controller="Product" asp-action="Upsert" asp-route-id="@obj.Id" class="btn btn-sm btn-warning">
                                         <i class="bi bi-pencil-square"></i> Edit
                                     </a>
                                     <a asp-controller="Product" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-sm btn-danger">
@@ -62,10 +63,14 @@
                             </tr>
                         }
                     </tbody>
-                </table>
+ *@                </table>
             }
         </div>
 
     </div>
 </div>
+
+@section Scripts{
+    <script src="~/js/Product.js"></script>
+}
 
