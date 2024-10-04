@@ -16,6 +16,8 @@ namespace BulkyWeb.Data
         //To Add Dbset
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+
 
         //To do seeding or to add data in db
         protected override void OnModelCreating(ModelBuilder modelBuilder)
