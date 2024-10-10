@@ -22,15 +22,15 @@ namespace Bulky.DataAccess.Repository
             var objFromDb = _db.Products.FirstOrDefault(u => u.Id == obj.Id);
             if (objFromDb != null) 
             {
-                objFromDb.Title = objFromDb.Title;
-                objFromDb.ISBN = objFromDb.ISBN;
-                objFromDb.Price = objFromDb.Price;
-                objFromDb.Price50 = objFromDb.Price50;
-                objFromDb.ListPrice = objFromDb.ListPrice;
-                objFromDb.Price100 = objFromDb.Price100;
-                objFromDb.Description = objFromDb.Description;
-                objFromDb.CategoryId = objFromDb.CategoryId;
-                objFromDb.Author = objFromDb.Author;
+                objFromDb.Title = obj.Title;
+                objFromDb.ISBN = obj.ISBN;
+                objFromDb.Price = obj.Price;
+                objFromDb.Price50 = obj.Price50;
+                objFromDb.ListPrice = obj.ListPrice;
+                objFromDb.Price100 = obj.Price100;
+                objFromDb.Description = obj.Description;
+                objFromDb.CategoryId = obj.CategoryId;
+                objFromDb.Author = obj.Author;
                 if (obj.ImageUrl !=null)
                 {
                     objFromDb.ImageUrl = obj.ImageUrl;
