@@ -6,6 +6,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Identity;
 using Bulky.Utility;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using Stripe;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +16,9 @@ builder.Services.AddControllersWithViews();
 //Add connection for EntityFrameworkcore
 builder.Services.AddDbContext<ApplicationDbContext>(Options => 
 Options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+//To fetch the values for stripe from appsettings
+builder.Services.Configure<StripeSettings>(builder.Configuration.GetSection("Stripe"));
 
 //builder.Services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddIdentity<IdentityUser,IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
@@ -43,6 +47,9 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
+//for stripe
+StripeConfiguration.ApiKey = builder.Configuration.GetSection("Stripe:SecretKey").Get<string>();
 
 app.UseRouting();
 app.UseAuthentication();
